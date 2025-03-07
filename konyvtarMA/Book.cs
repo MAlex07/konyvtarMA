@@ -27,17 +27,40 @@ namespace konyvtarMA
 		public int ReleaseYear { get => releaseYear; set => releaseYear = value; }
 
 
-		public void GetBookByTitle(Book[] books, string title)
+		public static Book GetBookByTitle(Book[] books, string title)
 		{
-
+			foreach (var book in books)
+			{
+				if (AreTitlesEquals(book.Title, title))
+				{
+					return book;
+				}
+			}
+			return null;
 		}
 
-		public void EditBookData()
+		private static bool AreTitlesEquals(string title1, string title2)
 		{
-			this.title = "Top gear";
-			this.author = "Gáspár Győző";
-			this.pageCount = 576;
-			this.releaseYear = 1976;
+			if(title1.Length == title2.Length)
+			{
+				return false;
+			}
+			for (int i = 0; i < title1.Length; i++)
+			{
+				if(char.ToLower(title1[i]) != char.ToLower(title2[i]))
+				{
+					return false;
+				}
+			}
+			return true;
+		}
+
+		public void EditBookData( string newtitle, string newauthor, int newpageCount, int newreleaseYear)
+		{
+			this.title = newtitle;
+			this.author = newauthor;
+			this.pageCount = newpageCount;
+			this.releaseYear = newreleaseYear;
 		}
 
 

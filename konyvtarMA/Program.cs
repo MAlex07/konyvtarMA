@@ -15,8 +15,21 @@
             Console.WriteLine();
             Console.WriteLine();
 
-            konyv1.EditBookData();
+            konyv1.EditBookData("Finlandia", "Gáspár Győző", 5000, 2016);
 			Console.WriteLine(konyv1);
+
+			Book[] books = new Book[] {konyv1, konyv2, konyv3};
+
+			Book keresett = Book.GetBookByTitle(books, "Egri csillagok");
+
+			if (keresett != null)
+			{
+                Console.WriteLine($"Létezik ilyen könyv: {keresett}");
+            }
+			else
+			{
+                Console.WriteLine("Sajnos nincs ilyen könyv");
+            }
         }
 	}
 }
